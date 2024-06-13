@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import api from "../api/data";
-import key from "../api/key.jsx.env";
-
-const token = key;
-const options = { headers: { Authorization: `Bearer ${token}` } };
 
 function User() {
   const [searchParams] = useSearchParams();
   const username = searchParams.get("username");
   const [userData, setUserData] = useState(null);
-  const [repos, setRepos] = useState([]);
+  const [repos, setRepos] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -18,18 +14,14 @@ function User() {
 
     const fetchUser = async () => {
       try {
-        const response = await api.get(`/${username}`, options);
+        const response = await api.get(`/users/${username}`);
         if (response && response.data) {
           setUserData(response.data);
         }
       } catch (error) {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
           setError("User not found");
         } else {
-          console.log(`Error message: ${error.message}`);
           setError("An error occurred");
         }
       }
@@ -37,18 +29,14 @@ function User() {
 
     const fetchRepos = async () => {
       try {
-        const response = await api.get(`/${username}/repos`, options);
+        const response = await api.get(`/users/${username}/repos`);
         if (response && response.data) {
           setRepos(response.data);
         }
       } catch (error) {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          setError("User not found");
+          setError("Repos not found");
         } else {
-          console.log(`Error message: ${error.message}`);
           setError("An error occurred");
         }
       }
@@ -58,38 +46,21 @@ function User() {
     fetchRepos();
   }, [username]);
 
-  const notFound = <li>User not found</li>;
-
   return (
     <>
       <section>
         <ul>
-          {error
-            ? notFound
-            : userData && (
+          {error ? (
+            <li>{error}</li>
+          ) : (
+            <>
+              {userData && (
                 <li key={userData.id}>
                   {userData.login} ({userData.html_url})
                 </li>
               )}
-        </ul>
-      </section>
-      <section>
-        <h2>Repositories</h2>
-        <ul>
-          {repos.length > 0 ? (
-            repos.map((repo) => (
-              <li key={repo.id}>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {repo.name}
-                </a>
-              </li>
-            ))
-          ) : (
-            <li>No repositories found</li>
+              {repos && repos.map((repo) => <li key={repo.id}>{repo.name}</li>)}
+            </>
           )}
         </ul>
       </section>
