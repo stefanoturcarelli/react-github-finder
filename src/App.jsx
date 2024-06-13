@@ -1,6 +1,24 @@
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Search from "./pages/Search.jsx";
+import User from "./pages/User.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <main>
+        <div className="container">
+          <h1>GitHub Finder</h1>
+          <Routes>
+            <Route path="/" element={<Search />} />
+            <Route path="/user" element={<User />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </main>
+    </>
+  );
 }
 
 export default App;
