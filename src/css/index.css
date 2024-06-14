@@ -135,3 +135,102 @@ form {
   top: 0;
   right: 10px;
 }
+
+/* User component */
+
+/* section,
+ul,
+li,
+img,
+h2,
+div,
+p {
+  outline: auto;
+} */
+
+.user-avatar {
+  display: grid;
+  place-content: center;
+}
+
+.user-avatar img {
+  border-radius: 50%;
+  width: 200px;
+}
+
+.section-user-component {
+  display: grid;
+  justify-items: center;
+  justify-content: stretch;
+}
+
+.user-container {
+  display: grid;
+  gap: 20px;
+}
+
+.username {
+  text-align: center;
+  font-size: 2.1rem;
+}
+
+.repos-followers-following {
+  display: flex;
+  gap: 50px;
+  text-align: center;
+}
+
+.go-to-github-button-container {
+  display: grid;
+  place-content: center;
+}
+
+.return-button,
+.go-to-github-button {
+  height: 42px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background-color: rgb(26, 167, 82);
+}
+
+.repos-list-container {
+  margin-top: 20px;
+}
+
+.repos-list-container h2 {
+  margin-bottom: 20px;
+}
+
+.repos-list {
+  display: grid;
+  gap: 20px;
+}
+
+.individual-repo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  background-color: rgb(239, 239, 239);
+  border-radius: 5px;
+}
+
+.individual-repo div,
+.individual-repo p {
+  padding: 0 10px;
+}
+
+.repo-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgb(77, 77, 77);
+}
+
+.repo-description,
+.repo-date {
+  color: rgb(128, 128, 128);
+}

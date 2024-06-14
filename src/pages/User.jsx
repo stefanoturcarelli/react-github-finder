@@ -48,25 +48,61 @@ function User() {
 
   return (
     <>
-      <section>
-        <ul>
-          {error ? (
-            <li>{error}</li>
-          ) : (
-            <>
-              {userData && (
-                <li key={userData.id}>
-                  {userData.login} ({userData.html_url})
-                </li>
-              )}
-              {repos && repos.map((repo) => <li key={repo.id}>{repo.name}</li>)}
-            </>
-          )}
-        </ul>
+      <section className="section-user-component">
+        {error ? (
+          <p>{error}</p>
+        ) : (
+          <>
+            {userData && (
+              <div className="user-container" key={userData.id}>
+                <div className="user-avatar">
+                  <img src={userData.avatar_url} alt="avatar-image" />
+                </div>
+                <div className="username">{userData.login}</div>
+                <div className="repos-followers-following">
+                  <div>
+                    <p>{userData.public_repos}</p>
+                    <p>Repositories</p>
+                  </div>
+                  <div>
+                    <p>{userData.followers}</p>
+                    <p>Followers</p>
+                  </div>
+                  <div>
+                    <p>{userData.following}</p>
+                    <p>Following</p>
+                  </div>
+                </div>
+                <div className="go-to-github-button-container">
+                  <a className="go-to-github-button" href={userData.html_url}>
+                    Go to GitHub
+                  </a>
+                </div>
+              </div>
+            )}
+            <div className="repos-list-container">
+              <h2>My Repositories</h2>
+              <div className="repos-list">
+                {repos &&
+                  repos.map((repo) => (
+                    <div className="individual-repo" key={repo.id}>
+                      <div>
+                        <p className="repo-name">{repo.name}</p>
+                        <p className="repo-description">{repo.description}</p>
+                      </div>
+                      <p className="repo-date">{new Date(repo.updated_at).toDateString()}</p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </>
+        )}
       </section>
       <section>
         <h2>
-          <Link to="/">Return</Link>
+          <Link className="return-button" to="/">
+            Return
+          </Link>
         </h2>
       </section>
     </>
