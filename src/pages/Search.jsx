@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,7 +45,13 @@ function Search() {
           {errors.username && "This field is required"}
         </span>
 
-        <button type="submit">Submit</button>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.99 }}
+          type="submit"
+        >
+          Submit
+        </motion.button>
       </form>
     </>
   );
