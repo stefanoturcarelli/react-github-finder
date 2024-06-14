@@ -31,14 +31,18 @@ function Search() {
 
   return (
     <>
+      <h1 className="search-title">GitHub Finder</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
+          className="form-input"
           placeholder="Search user"
           aria-label="Search user"
           {...register("username", { required: true })}
         />
-        {errors.username && <span>This field is required</span>}
+        <span className="error-message">
+          {errors.username && "This field is required"}
+        </span>
 
         <button type="submit">Submit</button>
       </form>

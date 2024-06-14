@@ -100,3 +100,38 @@ li {
 :not(li:last-child) {
   border-bottom: none;
 }
+
+/* Search component */
+
+/* form,
+input[type="text"],
+button,
+span,
+h1 {
+  outline: auto;
+} */
+
+.search-title {
+  text-align: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
+  justify-content: space-evenly;
+  padding-top: 30px;
+}
+
+.form-input {
+  height: 40px;
+}
+
+.error-message {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  top: 0;
+  right: 10px;
+}

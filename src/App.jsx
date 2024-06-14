@@ -9,7 +9,6 @@ function App() {
     <>
       <main>
         <div className="container">
-          <h1>GitHub Finder</h1>
           <Routes>
             <Route path="/" element={<Search />} />
             <Route path="/user" element={<User />} />
